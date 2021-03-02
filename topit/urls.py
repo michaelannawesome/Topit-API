@@ -1,5 +1,5 @@
 from topit import views
-django.conf.urls import urls
+from django.conf.urls import url
 
 urlpatterns = [
     url(r'^api/magic$', views.magic_list),

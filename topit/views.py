@@ -50,6 +50,14 @@ def magic_detail(request, pk):
             return JsonResponse(magic_serializer.data)
         return JsonResponse(magic_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    elif request.method == 'DELETE':
+        magic.delete()
+        return JsonResponse({'message': 'Magic has successfully vanished!'}, status=status.HTTP_204_NO_CONTENT)
+
 
 @api_view(['GET'])
 def magic_list_published(request):
+
+    if request.method == 'GET':
+        magic_serializer = MagicSerializer(magic, many=True)
+        return JsonResponse(magic_serializer.data, safe=False)
